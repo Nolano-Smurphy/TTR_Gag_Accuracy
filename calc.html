@@ -65,18 +65,20 @@
 
         <input type="checkbox" id="stun" label="Stunned?">Stunned?</input>
         <select id="stunQuantity" label="How Many Stunned?" disabled="true">
-            <option value="blankStun" value="blank"></option>
-            <option value="S1">1 Gag Stun</option>
-            <option value="S2">2 Gag Stun</option>
-            <option value="S3">3 Gag Stun</option>
+            <option id="blankStun" value="0"></option>
+            <option value="1">1 Gag Stun</option>
+            <option value="2">2 Gag Stun</option>
+            <option value="3">3 Gag Stun</option>
         </select>
 
         <input type="checkbox" id="lure_ratio" label="Lured?">Some lured?</input>
         <select id="luredQuantity" label="How Many Lured?" disabled="true">
-            <option value="blankLure" value="blank"></option>
-            <option value="S1">1 Cog Lured</option>
-            <option value="S2">2 Cogs Lured</option>
-            <option value="S3">3 Cogs Lured</option>
+            <option id="blankLure" value="0"></option>
+            <option value="25">25% of Cogs Lured</option>
+            <option value="33">33% of Cogs Lured</option>
+            <option value="50">50% of Cogs Lured</option>
+            <option value="66">66% of Cogs Lured</option>
+            <option value="75">75% of Cogs Lured</option>
         </select>
 
         <input id="calculateButton" type="button" value="Calculate"/>
@@ -129,7 +131,12 @@
                 var accTotal = convertGagToAcc(gagDropDown.value) +
                                convertLvlToAcc(cogDropDown.value) +
                                convertProgToAcc(trackDropDown.value);
-                //if(stunBox.checked) {}
+                if(stunDropDown.value !== "0") {
+                    accTotal = convertStunToAcc(stunDropDown.value);
+                }
+                if(lureDropDown.value !== "0") {
+                    accTotal = convertLureToAcc(lureDropDown.value);
+                }
                 total.innerText = "Final Accuracy = " + accTotal;
             })
 
@@ -176,6 +183,14 @@
 
             function convertProgToAcc(progress) {
                 return 10 * (parseInt(progress) - 1);
+            }
+
+            function convertStunToAcc(stunQuan) {
+                return 20 * (parseInt(stunQuan));
+            }
+
+            function convertLureToAcc(lureRatio) {
+                return parseInt(lureRatio);
             }
 
         </script>
