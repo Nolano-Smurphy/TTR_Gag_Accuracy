@@ -2,7 +2,7 @@
 <html>
 
 <header>
-    <title> The Unofficial ToonTown Rewritten Gag Accuracy Calculator</title>
+    <title>The Unofficial ToonTown Rewritten Gag Accuracy Calculator</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
@@ -29,56 +29,59 @@
 
         <select id="target_level" label="Cog Level">
             <optgroup label="Tier 1">
-                <option id="1-1">1</option>
-                <option id="1-2">2</option>
-                <option id="1-3">3</option>
-                <option id="1-4">4</option>
-                <option id="1-5">5</option>
+                <option value="1-1">1</option>
+                <option value="1-2">2</option>
+                <option value="1-3">3</option>
+                <option value="1-4">4</option>
+                <option value="1-5">5</option>
             </optgroup>
             <optgroup label="Tier 2-8">
-                <option id="1">1</option>
-                <option id="2">2</option>
-                <option id="3">3</option>
-                <option id="4">4</option>
-                <option id="5">5</option>
-                <option id="6">6</option>
-                <option id="7">7</option>
-                <option id="8">8</option>
-                <option id="9">9</option>
-                <option id="10">10</option>
-                <option id="11">11</option>
-                <option id="12">12</option>
-                <option id="13+">13+</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14+">14+</option>
             </optgroup>
         </select>
 
         <select id="track_prog" label="Track Progress">
-            <option id="G1">1</option>
-            <option id="G2">2</option>
-            <option id="G3">3</option>
-            <option id="G4">4</option>
-            <option id="G5">5</option>
-            <option id="G6">6</option>
-            <option id="G7">7</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
         </select>
 
         <input type="checkbox" id="stun" label="Stunned?">Stunned?</input>
         <select id="stunQuantity" label="How Many Stunned?" disabled="true">
-            <option id="blankStun" value="blank"></option>
-            <option id="S1">1 Gag Stun</option>
-            <option id="S2">2 Gag Stun</option>
-            <option id="S3">3 Gag Stun</option>
+            <option value="blankStun" value="blank"></option>
+            <option value="S1">1 Gag Stun</option>
+            <option value="S2">2 Gag Stun</option>
+            <option value="S3">3 Gag Stun</option>
         </select>
 
         <input type="checkbox" id="lure_ratio" label="Lured?">Some lured?</input>
         <select id="luredQuantity" label="How Many Lured?" disabled="true">
-            <option id="blankLure" value="blank"></option>
-            <option id="S1">1 Cog Lured</option>
-            <option id="S2">2 Cogs Lured</option>
-            <option id="S3">3 Cogs Lured</option>
+            <option value="blankLure" value="blank"></option>
+            <option value="S1">1 Cog Lured</option>
+            <option value="S2">2 Cogs Lured</option>
+            <option value="S3">3 Cogs Lured</option>
         </select>
 
-        <input type="submit" value="Calculate"></button>
+        <input id="calculateButton" type="button" value="Calculate"/>
+
+        <h1 id="finalResult">Final Accuracy = </h1>
 
         <script type="text/javascript">
 
@@ -87,7 +90,12 @@
 
             var lureBox = document.getElementById('lure_ratio');
             var gagDropDown = document.getElementById('gag_choice');
+            var cogDropDown = document.getElementById('target_level');
+            var trackDropDown = document.getElementById('track_prog');
             var lureDropDown = document.getElementById('luredQuantity');
+
+            var calcButton = document.getElementById('calculateButton');
+            var total = document.getElementById('finalResult');
 
             function toggleDisabled(disableBox, targetDropDown) {
                 targetDropDown.disabled = !disableBox.checked;
@@ -116,6 +124,59 @@
                     lureBox.checked = false;
                 }
             })
+
+            calcButton.addEventListener('click', function() {
+                var accTotal = convertGagToAcc(gagDropDown.value) +
+                               convertLvlToAcc(cogDropDown.value) +
+                               convertProgToAcc(trackDropDown.value);
+                //if(stunBox.checked) {}
+                total.innerText = "Final Accuracy = " + accTotal;
+            })
+
+            function convertGagToAcc(gagString) {
+                switch (gagString) {
+                    case "presentation":
+                    case "sound":
+                    case "squirt":
+                        return 95;
+                    case "throw":
+                        return 75;
+                    case "toon-up":
+                    case "largeLure":
+                        return 70;
+                    case "mediumLure":
+                        return 60;
+                    case "smallLure":
+                    case "drop":
+                        return 50;
+                    default:
+                        return 0;
+                }
+            }
+
+            function convertLvlToAcc(cogLevel) {
+                switch(cogLevel) {
+                    case "1-1":
+                    case "1":
+                        return -2;
+                    case "1-2":
+                        return -5; 
+                    case "1-3":
+                        return -10;
+                    case "1-4":
+                        return -12;
+                    case "1-5":
+                        return -15;
+                    case "14+":
+                        return -65;
+                    default: 
+                        return ((parseInt(cogLevel, 10) * -5) + 5);
+                }
+            }
+
+            function convertProgToAcc(progress) {
+                return 10 * (parseInt(progress) - 1);
+            }
 
         </script>
     </main>
