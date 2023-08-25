@@ -6,7 +6,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
-    <link href="calc.css" rel="stylesheet" />
+    <link href="calc.css" rel="stylesheet"/>
 </header>
 
 <body>
@@ -14,61 +14,61 @@
 
     <main>
         <select id="gag_choice" label="Gag Choice">
-            <option value="toon-up">Toon-Up</option>
+            <option name="toon-up" value="70">Toon-Up</option>
             <optgroup label="Lure">
-                <option value="smallLure">$1/Small Magnet</option>
-                <option value="mediumLure">$5/Large Magnet</option>
-                <option value="largeLure">$10/Hypno Goggles</option>
-                <option value="presentation"> Presentation</option>
+                <option name="smallLure" value="50">$1/Small Magnet</option>
+                <option name="mediumLure" value="60">$5/Large Magnet</option>
+                <option name="largeLure" value="70">$10/Hypno Goggles</option>
+                <option name="presentation" value="95"> Presentation</option>
             </optgroup>
-            <option value="sound">Sound</option>
-            <option value="throw">Throw</option>
-            <option value="squirt">Squirt</option>
-            <option value="drop">Drop</option>
+            <option name="sound" value="95">Sound</option>
+            <option name="throw" value="75">Throw</option>
+            <option name="squirt" value="95">Squirt</option>
+            <option name="drop" value="50">Drop</option>
         </select>
 
         <select id="target_level" label="Cog Level">
             <optgroup label="Tier 1">
-                <option value="1-1">1</option>
-                <option value="1-2">2</option>
-                <option value="1-3">3</option>
-                <option value="1-4">4</option>
-                <option value="1-5">5</option>
+                <option name="1-1" value="2">1</option>
+                <option name="1-2" value="5">2</option>
+                <option name="1-3" value="10">3</option>
+                <option name="1-4" value="12">4</option>
+                <option name="1-5" value="15">5</option>
             </optgroup>
             <optgroup label="Tier 2-8">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-                <option value="13">13</option>
-                <option value="14+">14+</option>
+                <option name="1" value="2">1</option>
+                <option name="2" value="5">2</option>
+                <option name="3" value="10">3</option>
+                <option name="4" value="15">4</option>
+                <option name="5" value="20">5</option>
+                <option name="6" value="25">6</option>
+                <option name="7" value="30">7</option>
+                <option name="8" value="35">8</option>
+                <option name="9" value="40">9</option>
+                <option name="10" value="45">10</option>
+                <option name="11" value="50">11</option>
+                <option name="12" value="55">12</option>
+                <option name="13" value="60">13</option>
+                <option name="14+" value="65">14+</option>
             </optgroup>
         </select>
 
         <select id="track_prog" label="Track Progress">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
+            <option value="0">1</option>
+            <option value="10">2</option>
+            <option value="20">3</option>
+            <option value="30">4</option>
+            <option value="40">5</option>
+            <option value="50">6</option>
+            <option value="60">7</option>
         </select>
 
         <input type="checkbox" id="stun" label="Stunned?">Stunned?</input>
         <select id="stunQuantity" label="How Many Stunned?" disabled="true">
             <option id="blankStun" value="0"></option>
-            <option value="1">1 Gag Stun</option>
-            <option value="2">2 Gag Stun</option>
-            <option value="3">3 Gag Stun</option>
+            <option value="20">1 Gag Stun</option>
+            <option value="40">2 Gag Stun</option>
+            <option value="60">3 Gag Stun</option>
         </select>
 
         <input type="checkbox" id="lure_ratio" label="Lured?">Some lured?</input>
@@ -77,7 +77,7 @@
             <option value="25">25% of Cogs Lured</option>
             <option value="33">33% of Cogs Lured</option>
             <option value="50">50% of Cogs Lured</option>
-            <option value="66">66% of Cogs Lured</option>
+            <option value="66">67% of Cogs Lured</option> <!--I assume the value is truncated.-->
             <option value="75">75% of Cogs Lured</option>
         </select>
 
@@ -106,7 +106,7 @@
             stunBox.addEventListener('change', function () {
                 toggleDisabled(stunBox, stunDropDown)
                 if (stunDropDown.disabled) {
-                    stunDropDown.value = "blank";
+                    stunDropDown.value = "0";
                 }
             })
 
@@ -115,83 +115,30 @@
                     toggleDisabled(lureBox, lureDropDown);
                 }
                 if (lureDropDown.disabled) {
-                    lureDropDown.value = "blank";
+                    lureDropDown.value = "0";
                 }
             })
 
             gagDropDown.addEventListener('change', function () {
                 if (gagDropDown.value !== "sound") {
                     lureDropDown.disabled = true
-                    lureDropDown.value = "blank";
+                    lureDropDown.value = "0";
                     lureBox.checked = false;
                 }
             })
 
             calcButton.addEventListener('click', function() {
-                var accTotal = convertGagToAcc(gagDropDown.value) +
-                               convertLvlToAcc(cogDropDown.value) +
-                               convertProgToAcc(trackDropDown.value);
+                var accTotal = parseInt(gagDropDown.value, 10) -
+                               parseInt(cogDropDown.value, 10) +
+                               parseInt(trackDropDown.value, 10);
                 if(stunDropDown.value !== "0") {
-                    accTotal = convertStunToAcc(stunDropDown.value);
+                    accTotal = accTotal + parseInt(stunDropDown.value);
                 }
                 if(lureDropDown.value !== "0") {
-                    accTotal = convertLureToAcc(lureDropDown.value);
+                    accTotal = accTotal + parseInt(lureDropDown.value);
                 }
                 total.innerText = "Final Accuracy = " + accTotal;
             })
-
-            function convertGagToAcc(gagString) {
-                switch (gagString) {
-                    case "presentation":
-                    case "sound":
-                    case "squirt":
-                        return 95;
-                    case "throw":
-                        return 75;
-                    case "toon-up":
-                    case "largeLure":
-                        return 70;
-                    case "mediumLure":
-                        return 60;
-                    case "smallLure":
-                    case "drop":
-                        return 50;
-                    default:
-                        return 0;
-                }
-            }
-
-            function convertLvlToAcc(cogLevel) {
-                switch(cogLevel) {
-                    case "1-1":
-                    case "1":
-                        return -2;
-                    case "1-2":
-                        return -5; 
-                    case "1-3":
-                        return -10;
-                    case "1-4":
-                        return -12;
-                    case "1-5":
-                        return -15;
-                    case "14+":
-                        return -65;
-                    default: 
-                        return ((parseInt(cogLevel, 10) * -5) + 5);
-                }
-            }
-
-            function convertProgToAcc(progress) {
-                return 10 * (parseInt(progress) - 1);
-            }
-
-            function convertStunToAcc(stunQuan) {
-                return 20 * (parseInt(stunQuan));
-            }
-
-            function convertLureToAcc(lureRatio) {
-                return parseInt(lureRatio);
-            }
 
         </script>
     </main>
