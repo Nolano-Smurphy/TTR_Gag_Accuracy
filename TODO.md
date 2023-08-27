@@ -1,6 +1,6 @@
 # To-Do List Before Merging to Main  (1 / 6)
 [X] Make Toon-Up immune to tgtLvl/levelDropDown.
-[ ] Make Toon-Up receive only half of trackExp/trackDropDown.
+[X] Make Toon-Up receive only half of trackExp/trackDropDown.
 
 [ ] Make lured-ratio checkbox disabled unless a multi-target gag is used.
 [ ] Create a way to indicate Wedding Cake/Geyser were used instead of single-target gags in their respective tracks (this may be a checkbox called "Multi-Target?").

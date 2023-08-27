@@ -39,17 +39,20 @@ gagDropDown.addEventListener('change', function () {
 })
 
 calcButton.addEventListener('click', function() {
-    var accTotal = accTotal = parseInt(gagDropDown.value, 10) + parseInt(trackDropDown.value, 10);
-    
+    var trackBonus = parseInt(trackDropDown.value, 10) / 2; //This bonus is halved for Toon-Up. Added in 2nd time for other gags.
+    var accTotal = parseInt(gagDropDown.value, 10) + trackBonus;
+
     if(gagDropDown.selectedIndex !== 0) {
-        accTotal = accTotal - parseInt(cogDropDown.value, 10);
+        accTotal -= parseInt(cogDropDown.value, 10);
+        accTotal += trackBonus;
         if(lureDropDown.value !== "0") {
-            accTotal = accTotal + parseInt(lureDropDown.value);
+            accTotal += parseInt(lureDropDown.value);
         }
     }
 
     if(stunDropDown.value !== "0") {
-        accTotal = accTotal + parseInt(stunDropDown.value);
+        accTotal += parseInt(stunDropDown.value);
     }
+
     total.innerText = "Final Accuracy = " + accTotal;
 })
