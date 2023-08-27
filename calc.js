@@ -39,14 +39,17 @@ gagDropDown.addEventListener('change', function () {
 })
 
 calcButton.addEventListener('click', function() {
-    var accTotal = parseInt(gagDropDown.value, 10) -
-    parseInt(cogDropDown.value, 10) +
-    parseInt(trackDropDown.value, 10);
+    var accTotal = accTotal = parseInt(gagDropDown.value, 10) + parseInt(trackDropDown.value, 10);
+    
+    if(gagDropDown.selectedIndex !== 0) {
+        accTotal = accTotal - parseInt(cogDropDown.value, 10);
+        if(lureDropDown.value !== "0") {
+            accTotal = accTotal + parseInt(lureDropDown.value);
+        }
+    }
+
     if(stunDropDown.value !== "0") {
         accTotal = accTotal + parseInt(stunDropDown.value);
-    }
-    if(lureDropDown.value !== "0") {
-        accTotal = accTotal + parseInt(lureDropDown.value);
     }
     total.innerText = "Final Accuracy = " + accTotal;
 })

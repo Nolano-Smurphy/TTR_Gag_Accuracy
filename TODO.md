@@ -1,5 +1,5 @@
-# To-Do List Before Merging to Main  (0 / 6)
-[ ] Make Toon-Up immune to tgtLvl/levelDropDown.
+# To-Do List Before Merging to Main  (1 / 6)
+[X] Make Toon-Up immune to tgtLvl/levelDropDown.
 [ ] Make Toon-Up receive only half of trackExp/trackDropDown.
 
 [ ] Make lured-ratio checkbox disabled unless a multi-target gag is used.
