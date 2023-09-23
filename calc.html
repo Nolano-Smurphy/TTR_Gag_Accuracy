@@ -16,15 +16,25 @@
         <select id="gag_choice" label="Gag Choice">
             <option name="toon-up" value="70">Toon-Up</option>
             <optgroup label="Lure">
-                <option name="smallLure" value="50">$1/Small Magnet</option>
-                <option name="mediumLure" value="60">$5/Large Magnet</option>
-                <option name="largeLure" value="70">$10/Hypno Goggles</option>
-                <option name="presentation" value="95"> Presentation</option>
+                <option name="s_smallLure" value="50">$1 Bill</option>
+                <option name="m_smallLure" class="multi" value="50">Small Magnet</option>
+                <option name="s_mediumLure" value="60">$5 Bill</option>
+                <option name="m_mediumLure" class="multi" value="60">Large Magnet</option>
+                <option name="s_largeLure" value="70">$10 Bill</option>
+                <option name="m_largeLure" class="multi" value="70">Hypno Goggles</option>
+                <option name="presentation" class="multi" value="95">Presentation</option>
             </optgroup>
-            <option name="sound" value="95">Sound</option>
-            <option name="throw" value="75">Throw</option>
-            <option name="squirt" value="95">Squirt</option>
+            <option name="sound" class="multi" value="95">Sound</option>
+            <optgroup label="Throw">
+                <option name="wedding" class="multi" value="75">Wedding Cake</option>
+                <option name="throw" value="75">Cupcake<->Birthday Cake</option>
+            </optgroup>
+            <optgroup label="Squirt">
+                <option name="geyser" class="multi" value="95">Geyser</option>
+                <option name="squirt" value="95">Squirting Flower<->Storm Cloud</option>
+            </optgroup>
             <option name="drop" value="50">Drop</option>
+            
         </select>
 
         <select id="target_level" label="Cog Level">
@@ -71,15 +81,17 @@
             <option value="60">3 Gag Stun</option>
         </select>
 
-        <input type="checkbox" id="lure_ratio" label="Lured?">Some lured?</input>
-        <select id="luredQuantity" label="How Many Lured?" disabled="true">
-            <option id="blankLure" value="0">--</option>
-            <option value="25">25% of Cogs Lured</option>
-            <option value="33">33% of Cogs Lured</option>
-            <option value="50">50% of Cogs Lured</option>
-            <option value="66">67% of Cogs Lured</option> <!--I assume the value is truncated.-->
-            <option value="75">75% of Cogs Lured</option>
-        </select>
+        <section id="luredRatioElements" class="hidden" style="display:none">
+            <input type="checkbox" id="lure_ratio" label="Lured?">Some lured?</input>
+            <select id="luredQuantity" label="How Many Lured?" disabled="true">
+                <option id="blankLure" value="0">--</option>
+                <option value="25">25% of Cogs Lured</option>
+                <option value="33">33% of Cogs Lured</option>
+                <option value="50">50% of Cogs Lured</option>
+                <option value="66">67% of Cogs Lured</option> <!--I assume the value is truncated.-->
+                <option value="75">75% of Cogs Lured</option>
+            </select>
+        </section>
 
         <input id="calculateButton" type="button" value="Calculate"/>
 
@@ -89,5 +101,9 @@
     </main>
 
 </body>
+
+<footer>
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/Nolano-Smurphy/TTR_Gag_Accuracy">GitHub</a>
+</footer>
 
 <html>

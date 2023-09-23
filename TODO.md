@@ -1,4 +1,4 @@
-# To-Do List Before Merging to Main  (1 / 6)
+# To-Do List Before Merging to Main  (2 / 6)
 [X] Make Toon-Up immune to tgtLvl/levelDropDown.
 [X] Make Toon-Up receive only half of trackExp/trackDropDown.
 

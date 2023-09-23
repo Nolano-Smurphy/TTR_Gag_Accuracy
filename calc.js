@@ -22,19 +22,22 @@ stunBox.addEventListener('change', function () {
 })
 
 lureBox.addEventListener('change', function () {
-    if (gagDropDown.value === "sound") {
-        toggleDisabled(lureBox, lureDropDown);
-    }
+    toggleDisabled(lureBox, lureDropDown);
     if (lureDropDown.disabled) {
         lureDropDown.value = "0";
     }
 })
 
 gagDropDown.addEventListener('change', function () {
-    if (gagDropDown.value !== "sound") {
+    lureDropDown.style.display = "inline";
+    lureBox.style.display = "inline";
+    if (!gagDropDown.value.classList.contains("multi")) {
         lureDropDown.disabled = true
         lureDropDown.value = "0";
         lureBox.checked = false;
+
+        lureDropDown.style.display = "none";
+        lureBox.style.display = "none";
     }
 })
 
